@@ -2,7 +2,7 @@
 
 // Implement the producer function
 void producer(int id, std::vector<Message>& messages, std::mutex& mtx, std::condition_variable& cv) {
-    double value = static_cast<double>(id * 10000);
+    double value = static_cast<double>(std::hash<std::thread::id>{}(std::this_thread::get_id()));
     bool isLast = false;
 
     while (value >= 1.0) {
